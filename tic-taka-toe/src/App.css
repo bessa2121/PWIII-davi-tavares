@@ -1,0 +1,122 @@
+/* Container principal centralizado */
+#root {
+  max-width: 700px;
+  margin: 3rem auto;
+  padding: 1rem 2rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #f9f9fb;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+  color: #222;
+}
+
+/* Layout do jogo: tabuleiro e histórico lado a lado */
+.game {
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+/* Tabuleiro */
+.game-board {
+  background: #fff;
+  padding: 20px 24px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+/* Status do jogo */
+.status {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 18px;
+  color: #4a4a4a;
+  text-align: center;
+}
+
+/* Linha do tabuleiro */
+.board-row {
+  display: flex;
+}
+
+/* Botão quadrado do tabuleiro */
+.square {
+  width: 70px;
+  height: 70px;
+  margin: 5px;
+  border-radius: 8px;
+  border: 2px solid #ddd;
+  background-color: #fafafa;
+  font-size: 28px;
+  font-weight: 700;
+  color: #222;
+  cursor: pointer;
+  transition: background-color 0.3s, border-color 0.3s, box-shadow 0.3s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+}
+
+.square:hover {
+  background-color: #e7e7ff;
+  border-color: #646cff;
+  box-shadow: 0 0 8px #646cffaa;
+}
+
+/* Histórico de jogadas */
+.game-info {
+  min-width: 220px;
+  max-height: 400px;
+  overflow-y: auto;
+  background: #fff;
+  padding: 18px 22px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.game-info ol {
+  padding-left: 20px;
+  margin: 0;
+}
+
+.game-info button {
+  width: 100%;
+  background-color: #646cff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  cursor: pointer;
+  transition: background-color 0.25s ease;
+}
+
+.game-info button:hover {
+  background-color: #4a4ad6;
+}
+
+/* Scroll bar customizada para histórico */
+.game-info::-webkit-scrollbar {
+  width: 6px;
+}
+
+.game-info::-webkit-scrollbar-thumb {
+  background-color: #646cffaa;
+  border-radius: 3px;
+}
+
+/* Responsividade */
+@media (max-width: 600px) {
+  .game {
+    flex-direction: column;
+    align-items: center;
+  }
+  .game-info {
+    max-height: none;
+    width: 100%;
+  }
+}
