@@ -1,122 +1,178 @@
-/* Container principal centralizado */
-#root {
-  max-width: 700px;
-  margin: 3rem auto;
-  padding: 1rem 2rem;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: #f9f9fb;
-  border-radius: 12px;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
-  color: #222;
+/* Reset básico */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-/* Layout do jogo: tabuleiro e histórico lado a lado */
+/* Fundo moderno */
+body {
+  min-height: 100vh;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #4f46e5, #9333ea, #06b6d4);
+  background-size: 400% 400%;
+  animation: gradientMove 12s ease infinite;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* animação do fundo */
+@keyframes gradientMove {
+  0% { background-position: 0% 50%;}
+  50% { background-position: 100% 50%;}
+  100% { background-position: 0% 50%;}
+}
+
+/* Container principal */
+#root {
+  width: 100%;
+  max-width: 900px;
+}
+
+/* Layout do jogo */
 .game {
   display: flex;
-  gap: 40px;
+  gap: 30px;
   justify-content: center;
   align-items: flex-start;
   flex-wrap: wrap;
 }
 
-/* Tabuleiro */
+/* Tabuleiro com glassmorphism */
 .game-board {
-  background: #fff;
-  padding: 20px 24px;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  backdrop-filter: blur(12px);
+  background: rgba(255,255,255,0.15);
+  border-radius: 20px;
+  padding: 25px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.25);
 }
 
 /* Status do jogo */
 .status {
   font-size: 22px;
   font-weight: 700;
-  margin-bottom: 18px;
-  color: #4a4a4a;
   text-align: center;
+  margin-bottom: 20px;
+  color: white;
 }
 
-/* Linha do tabuleiro */
+/* Linha */
 .board-row {
   display: flex;
+  justify-content: center;
 }
 
-/* Botão quadrado do tabuleiro */
+/* Quadrado */
 .square {
-  width: 70px;
-  height: 70px;
-  margin: 5px;
-  border-radius: 8px;
-  border: 2px solid #ddd;
-  background-color: #fafafa;
-  font-size: 28px;
-  font-weight: 700;
-  color: #222;
+  width: 80px;
+  height: 80px;
+  margin: 6px;
+
+  border-radius: 14px;
+  border: none;
+
+  font-size: 32px;
+  font-weight: bold;
+
+  background: rgba(255,255,255,0.25);
+  backdrop-filter: blur(10px);
+
+  color: white;
+
   cursor: pointer;
-  transition: background-color 0.3s, border-color 0.3s, box-shadow 0.3s;
+
+  transition: all 0.25s ease;
+
   display: flex;
   justify-content: center;
   align-items: center;
-  user-select: none;
 }
 
+/* Hover neon */
 .square:hover {
-  background-color: #e7e7ff;
-  border-color: #646cff;
-  box-shadow: 0 0 8px #646cffaa;
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 0 0 15px #ffffffaa;
+  background: rgba(255,255,255,0.35);
 }
 
-/* Histórico de jogadas */
+/* X vermelho neon */
+.square:contains("X") {
+  color: #ff4d6d;
+}
+
+/* O azul neon */
+.square:contains("O") {
+  color: #22c3ff;
+}
+
+/* Histórico */
 .game-info {
-  min-width: 220px;
-  max-height: 400px;
+  backdrop-filter: blur(12px);
+  background: rgba(255,255,255,0.15);
+
+  border-radius: 20px;
+
+  padding: 20px;
+  width: 230px;
+
+  max-height: 350px;
+
   overflow-y: auto;
-  background: #fff;
-  padding: 18px 22px;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+
+  box-shadow: 0 10px 40px rgba(0,0,0,0.25);
 }
 
+/* Lista */
 .game-info ol {
-  padding-left: 20px;
-  margin: 0;
+  padding-left: 18px;
 }
 
+/* Botões histórico */
 .game-info button {
   width: 100%;
-  background-color: #646cff;
-  color: white;
+  margin-bottom: 10px;
+
   border: none;
-  border-radius: 8px;
-  padding: 8px 14px;
+  border-radius: 10px;
+
+  padding: 10px;
+
+  background: rgba(255,255,255,0.25);
+  color: white;
+
   font-weight: 600;
-  margin-bottom: 8px;
+
   cursor: pointer;
-  transition: background-color 0.25s ease;
+
+  transition: all 0.2s ease;
 }
 
 .game-info button:hover {
-  background-color: #4a4ad6;
+  background: rgba(255,255,255,0.4);
+  transform: scale(1.03);
 }
 
-/* Scroll bar customizada para histórico */
+/* Scroll moderno */
 .game-info::-webkit-scrollbar {
   width: 6px;
 }
 
 .game-info::-webkit-scrollbar-thumb {
-  background-color: #646cffaa;
-  border-radius: 3px;
+  background: rgba(255,255,255,0.5);
+  border-radius: 10px;
 }
 
-/* Responsividade */
-@media (max-width: 600px) {
+/* Responsivo */
+@media (max-width: 650px) {
+
   .game {
     flex-direction: column;
     align-items: center;
   }
+
   .game-info {
-    max-height: none;
     width: 100%;
   }
+
 }
